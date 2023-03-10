@@ -18,6 +18,7 @@ type Chip8 struct {
 	display       [64][32]byte
 	keypad        [16]bool
 	rng           *rand.Rand
+	funcs         map[uint16]func()
 }
 
 func newChip8() *Chip8 {
@@ -41,8 +42,12 @@ func newChip8() *Chip8 {
 
 func (c *Chip8) emulateCycle() {
 	// Fetch Opcode
-	// Decode Opcode
-	// Execute Opcode
+	c.opcode = uint16((c.memory[c.pc] << 8) | c.memory[c.pc+1])
+
+	// increment pc
+	c.pc += 2
+
+	// Decode and execute
 
 	// Update timers
 }
